@@ -25,7 +25,6 @@ func getSum(dat []byte, offset int) (int) {
 
 	for i := 0; i < size; i++ {
 		if dat[(i + offset) % size] == dat[i] {
-			// todo: there is a more idiomatic way of converting numeric strings in modern golang
 			sum += int(dat[i] - '0')
 		}
 	}
