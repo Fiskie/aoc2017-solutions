@@ -15,33 +15,20 @@ func main() {
 	dat, err := ioutil.ReadFile("./day1_input.txt")
 	check(err)
 
-	part1(dat)
-	part2(dat)
+	fmt.Printf("Part 1: Output is %d\n", getSum(dat, 1))
+	fmt.Printf("Part 2: Output is %d\n", getSum(dat, len(dat) / 2))
 }
 
-func part1(dat []byte) {
-	size := len(dat)
+func getSum(dat []byte, offset int) (int) {
 	sum := 0
+	size := len(dat)
 
 	for i := 0; i < size; i++ {
-		if dat[(i+1) % size] == dat[i] {
+		if dat[(i + offset) % size] == dat[i] {
+			// todo: there is a more idiomatic way of converting numeric strings in modern golang
 			sum += int(dat[i] - '0')
 		}
 	}
 
-	fmt.Printf("Part 1: Output is %d\n", sum)
-}
-
-func part2(dat []byte) {
-	size := len(dat)
-
-	sum := 0
-
-	for i := 0; i < size; i++ {
-		if dat[(i + (size / 2)) % size] == dat[i] {
-			sum += int(dat[i] - '0')
-		}
-	}
-
-	fmt.Printf("Part 2: Output is %d\n", sum)
+	return sum
 }
