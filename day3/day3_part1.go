@@ -33,6 +33,8 @@ func getOffsetAndDepthOfSpiralValue(input int) (int, int) {
 		// - Calculates the input's position before direction is due to change.
 		// - Calculates the maximum possible offset for manhattan distance at this depth.
 		// - Uses these to calculate the offset.
+		// ex. given a length of 4 and offset of 2, length-offset will be between -2 and 2.
+		// we then use the absolute value of the number.
 		offset = abs(((corner - input) % (halfCycles - 1)) - ((halfCycles - 1) / 2))
 	}
 
