@@ -10,15 +10,15 @@ func key(x int, y int) (string) {
 }
 
 func sumAdjacents(x int, y int, grid map[string]int) (int) {
-	return grid[key(x-1,y-1)] +
-		grid[key(x-1,y)] +
-		grid[key(x-1,y+1)] +
-		grid[key(x,y-1)] +
-		grid[key(x,y)] +
-		grid[key(x,y+1)] +
-		grid[key(x+1,y-1)] +
-		grid[key(x+1,y)] +
-		grid[key(x+1,y+1)]
+	return grid[key(x-1, y-1)] +
+		grid[key(x-1, y)] +
+		grid[key(x-1, y+1)] +
+		grid[key(x, y-1)] +
+		grid[key(x, y)] +
+		grid[key(x, y+1)] +
+		grid[key(x+1, y-1)] +
+		grid[key(x+1, y)] +
+		grid[key(x+1, y+1)]
 }
 
 func main() {

@@ -44,7 +44,7 @@ func main() {
 			}
 
 			for _, cmpNum := range numbers {
-				if num > cmpNum && num % cmpNum == 0 {
+				if num > cmpNum && num%cmpNum == 0 {
 					sumDivisible += num / cmpNum
 				}
 			}

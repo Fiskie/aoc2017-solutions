@@ -19,9 +19,7 @@ func validator(passphrase string, uniqueFunc uniqueifier) (bool) {
 			word = uniqueFunc(word)
 		}
 
-		if unique[word] != true {
-			unique[word] = true
-		}
+		unique[word] = true
 	}
 
 	return len(words) == len(unique)
