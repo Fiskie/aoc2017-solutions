@@ -31,7 +31,7 @@ func main() {
 	for scanner.Scan() {
 		numberStrings := strings.Split(scanner.Text(), "	")
 		numbers := stringsToInts(numberStrings)
-		lowest := 9999999
+		lowest := 9999999 // fixme :/
 		highest := 0
 
 		for _, num := range numbers {
