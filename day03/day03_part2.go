@@ -31,7 +31,7 @@ func main() {
 
 	x := 0
 	y := 0
-	len := 1
+	length := 1
 	progress := 0
 	offset := 1
 	isX := true
@@ -45,13 +45,13 @@ func main() {
 
 		progress += 1
 
-		if progress == len {
+		if progress == length {
 			progress = 0
 			isX = !isX
 
 			if isX {
 				offset = -offset
-				len += 1
+				length += 1
 			}
 		}
 
