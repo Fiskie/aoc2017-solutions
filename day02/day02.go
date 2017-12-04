@@ -8,12 +8,6 @@ import (
 	"fmt"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 func stringsToInts(strings []string) ([]int) {
 	var out []int
 
@@ -26,8 +20,7 @@ func stringsToInts(strings []string) ([]int) {
 }
 
 func main() {
-	dat, err := os.Open("./day2_input.txt")
-	check(err)
+	dat, _ := os.Open("./day02_input.txt")
 
 	checksum := 0
 	sumDivisible := 0

@@ -1,8 +1,5 @@
 package main
 
-// TODO: dry
-// golang has first class functions? use them
-
 import (
 	"os"
 	"bufio"
@@ -11,13 +8,9 @@ import (
 	"sort"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
+type validator func(string) bool
 
-func isValidPart1(passphrase string) (bool) {
+func part1Validator(passphrase string) (bool) {
 	words := strings.Split(passphrase, " ")
 	unique := map[string]bool{}
 
@@ -36,7 +29,7 @@ func sortWord(word string) (string) {
 	return strings.Join(s, "")
 }
 
-func isValidPart2(passphrase string) (bool) {
+func part2Validator(passphrase string) (bool) {
 	words := strings.Split(passphrase, " ")
 	unique := map[string]bool{}
 
@@ -51,41 +44,23 @@ func isValidPart2(passphrase string) (bool) {
 	return len(words) == len(unique)
 }
 
-func part1() {
-	dat, err := os.Open("./day4_input.txt")
-	check(err)
+func validate(validatorFunc validator) (int) {
+	dat, _ := os.Open("./day04_input.txt")
 
 	counter := 0
 	reader := bufio.NewReader(dat)
 	scanner := bufio.NewScanner(reader)
 
 	for scanner.Scan() {
-		if isValidPart1(scanner.Text()) {
+		if validatorFunc(scanner.Text()) {
 			counter += 1
 		}
 	}
 
-	fmt.Printf("Part 1: %d passphrases are valid.\n", counter)
-}
-
-func part2() {
-	dat, err := os.Open("./day4_input.txt")
-	check(err)
-
-	counter := 0
-	reader := bufio.NewReader(dat)
-	scanner := bufio.NewScanner(reader)
-
-	for scanner.Scan() {
-		if isValidPart2(scanner.Text()) {
-			counter += 1
-		}
-	}
-
-	fmt.Printf("Part 2: %d passphrases are valid.\n", counter)
+	return counter
 }
 
 func main() {
-	part1()
-	part2()
+	fmt.Printf("Part 1: %d passphrases are valid.\n", validate(part1Validator))
+	fmt.Printf("Part 2: %d passphrases are valid.\n", validate(part2Validator))
 }
