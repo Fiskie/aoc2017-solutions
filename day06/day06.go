@@ -44,46 +44,30 @@ func stringsToInts(strings []string) ([]int) {
 	return out
 }
 
-func equals(a []int, b []int) (bool) {
-	for i := range a {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-
-	return true
-}
-
-func bankSeen(test []int, banks [][]int) (bool) {
-	for _, bank := range banks {
-		if equals(test, bank) {
-			return true
-		}
-	}
-
-	return false
-}
-
 func loadBank() ([]int) {
 	dat, _ := ioutil.ReadFile("./day06_input.txt")
 	return stringsToInts(strings.Split(string(dat), "	"))
 }
 
+func key(bank []int) (string) {
+	return fmt.Sprint(bank)
+}
+
 func main() {
-	var banks [][]int
+	banks := map[string]bool{}
 	bank := loadBank()
 
-	for !bankSeen(bank, banks) {
-		banks = append(banks, bank)
+	for !banks[key(bank)] {
+		banks[key(bank)] = true
 		bank = redistribute(bank)
 	}
 
 	fmt.Printf("Part 1: %d redistribution cycles were performed\n", len(banks))
 
-	banks = [][]int{}
+	banks = map[string]bool{}
 
-	for !bankSeen(bank, banks) {
-		banks = append(banks, bank)
+	for !banks[key(bank)] {
+		banks[key(bank)] = true
 		bank = redistribute(bank)
 	}
 
