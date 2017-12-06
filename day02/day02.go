@@ -24,9 +24,7 @@ func main() {
 
 	checksum := 0
 	sumDivisible := 0
-
-	reader := bufio.NewReader(dat)
-	scanner := bufio.NewScanner(reader)
+	scanner := bufio.NewScanner(bufio.NewReader(dat))
 
 	for scanner.Scan() {
 		numberStrings := strings.Split(scanner.Text(), "	")

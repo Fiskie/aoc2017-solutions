@@ -8,9 +8,7 @@ import (
 	"sort"
 )
 
-type uniqueifier func(string) string
-
-func validator(passphrase string, uniqueFunc uniqueifier) (bool) {
+func validator(passphrase string, uniqueFunc func(string) string) (bool) {
 	words := strings.Split(passphrase, " ")
 	unique := map[string]bool{}
 
@@ -31,7 +29,7 @@ func anagramUnique(word string) (string) {
 	return strings.Join(s, "")
 }
 
-func validate(uniqueFunc uniqueifier) (int) {
+func validate(uniqueFunc func(string) string) (int) {
 	dat, _ := os.Open("./day04_input.txt")
 	scanner := bufio.NewScanner(bufio.NewReader(dat))
 	counter := 0
