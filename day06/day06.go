@@ -7,10 +7,7 @@ import (
 	"strings"
 )
 
-func redistribute(bank []int) ([]int) {
-	// clone the list because we need to record what we've seen
-	bank = append([]int(nil), bank...)
-
+func redistribute(bank []int) {
 	redistributableBlocks := 0
 	targetIndex := 0
 
@@ -29,8 +26,6 @@ func redistribute(bank []int) ([]int) {
 		bank[targetIndex % size] += 1
 		redistributableBlocks -= 1
 	}
-
-	return bank
 }
 
 func stringsToInts(strings []string) ([]int) {
@@ -54,12 +49,12 @@ func key(bank []int) (string) {
 }
 
 func main() {
-	banks := map[string]bool{}
 	bank := loadBank()
+	banks := map[string]bool{}
 
 	for !banks[key(bank)] {
 		banks[key(bank)] = true
-		bank = redistribute(bank)
+		redistribute(bank)
 	}
 
 	fmt.Printf("Part 1: %d redistribution cycles were performed\n", len(banks))
@@ -68,7 +63,7 @@ func main() {
 
 	for !banks[key(bank)] {
 		banks[key(bank)] = true
-		bank = redistribute(bank)
+		redistribute(bank)
 	}
 
 	fmt.Printf("Part 2: %d redistribution cycles were performed\n", len(banks))
