@@ -10,6 +10,8 @@ import (
 	"fmt"
 )
 
+var re = regexp.MustCompile("^([a-z]*) \\((\\d*)\\)(?: -> (.*))?$")
+
 type node struct {
 	parent   *node
 	name     string
@@ -18,7 +20,6 @@ type node struct {
 }
 
 func addNode(str string, nodes map[string]*node) {
-	re := regexp.MustCompile("^([a-z]*) \\((\\d*)\\)(?: -> (.*))?$")
 	matches := re.FindStringSubmatch(str)
 	weight, _ := strconv.Atoi(matches[2])
 	name := matches[1]
