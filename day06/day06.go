@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"io/ioutil"
 	"strings"
+	"aoc2017"
 )
 
 func redistribute(bank []int) {
@@ -28,23 +28,12 @@ func redistribute(bank []int) {
 	}
 }
 
-func stringsToInts(strings []string) ([]int) {
-	var out []int
-
-	for _, str := range strings {
-		num, _ := strconv.Atoi(str)
-		out = append(out, num)
-	}
-
-	return out
-}
-
-func loadBank() ([]int) {
+func loadBank() []int {
 	dat, _ := ioutil.ReadFile("./day06_input.txt")
-	return stringsToInts(strings.Split(string(dat), "	"))
+	return aoc2017.StringsToInts(strings.Split(string(dat), "	"))
 }
 
-func key(bank []int) (string) {
+func key(bank []int) string {
 	return fmt.Sprint(bank)
 }
 

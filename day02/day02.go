@@ -4,20 +4,9 @@ import (
 	"os"
 	"bufio"
 	"strings"
-	"strconv"
 	"fmt"
+	"aoc2017"
 )
-
-func stringsToInts(strings []string) ([]int) {
-	var out []int
-
-	for _, str := range strings {
-		num, _ := strconv.Atoi(str)
-		out = append(out, num)
-	}
-
-	return out
-}
 
 func main() {
 	dat, _ := os.Open("./day02_input.txt")
@@ -28,7 +17,7 @@ func main() {
 
 	for scanner.Scan() {
 		numberStrings := strings.Split(scanner.Text(), "	")
-		numbers := stringsToInts(numberStrings)
+		numbers := aoc2017.StringsToInts(numberStrings)
 		lowest := 9999999 // fixme :/
 		highest := 0
 

@@ -12,7 +12,7 @@ func main() {
 	fmt.Printf("Part 2: Output is %d\n", getSum(dat, len(dat)/2))
 }
 
-func getSum(dat []byte, offset int) (int) {
+func getSum(dat []byte, offset int) int {
 	sum := 0
 	size := len(dat)
 

@@ -8,12 +8,12 @@ import (
 	"encoding/hex"
 )
 
-func stringsToInts(strings []string) []byte {
-	var out []byte
+func stringsToBytes(strings []string) []byte {
+	out := make([]byte, len(strings))
 
-	for _, str := range strings {
+	for i, str := range strings {
 		num, _ := strconv.Atoi(str)
-		out = append(out, byte(num))
+		out[i] = byte(num)
 	}
 
 	return out
@@ -21,7 +21,7 @@ func stringsToInts(strings []string) []byte {
 
 func getLengths() []byte {
 	dat, _ := ioutil.ReadFile("./day10_input.txt")
-	return stringsToInts(strings.Split(string(dat), ","))
+	return stringsToBytes(strings.Split(string(dat), ","))
 }
 
 func getList(length int) []int {

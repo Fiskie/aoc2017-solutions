@@ -2,16 +2,8 @@ package main
 
 import (
 	"fmt"
+	"aoc2017"
 )
-
-// golang why
-func abs(input int) (int) {
-	if input < 0 {
-		return -input
-	}
-
-	return input
-}
 
 func getOffsetAndDepthOfSpiralValue(input int) (int, int) {
 	// The calculated offset from being in a straight line from the centre.
@@ -35,7 +27,7 @@ func getOffsetAndDepthOfSpiralValue(input int) (int, int) {
 		// - Uses these to calculate the offset.
 		// ex. given a length of 4 and offset of 2, length-offset will be between -2 and 2.
 		// we then use the absolute value of the number.
-		offset = abs(((corner - input) % (halfCycles - 1)) - ((halfCycles - 1) / 2))
+		offset = aoc2017.Abs(((corner - input) % (halfCycles - 1)) - ((halfCycles - 1) / 2))
 	}
 
 	return offset, halfCycles / 2

@@ -1,7 +1,7 @@
 # Advent of Code 2017 - Golang learner edition
 
-Never used Golang before and I have no idea what I'm doing
+I used AoC2017 as a vehicle to learn Golang.
 
-Aaaaaaaaaaah
-
-when I suck less I'll probably go over the first ones again
+The puzzle inputs are specific to me; if you want to run them
+against your supplied inputs, maybe you should change them. Or
+not do that, and have fun actually writing your own solution.
