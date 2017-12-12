@@ -16,8 +16,7 @@ var pipes map[int][]int
 func parse(text string) {
 	groups := re.FindStringSubmatch(text)
 	id, _ := strconv.Atoi(groups[1])
-	numbers := aoc2017.StringsToInts(strings.Split(groups[2], ", "))
-	pipes[id] = numbers
+	pipes[id] = aoc2017.StringsToInts(strings.Split(groups[2], ", "))
 }
 
 func findNeighbours(id int, seen map[int]bool) map[int]bool {
@@ -47,28 +46,19 @@ func main() {
 
 	fmt.Printf("Part 1: The number of programs connected to PID 0 is %d\n", len(getGroupMembers(0)))
 
-	// Part 2: this could be optimised greatly by
-	// skipping group members we encounter, but oh well
+	// Keeping a map of encountered PIDs reduces time complexity to n sets
+	encountered := map[int]bool{}
 	memberLists := map[int]map[int]bool{}
-	unique := map[int]bool{}
 
 	for pipeId := range pipes {
-		memberLists[pipeId] = getGroupMembers(pipeId)
-	}
+		if !encountered[pipeId] {
+			memberLists[pipeId] = getGroupMembers(pipeId)
 
-	for _, memberList := range memberLists {
-		highestId := 0
-
-		for memberId := range memberList {
-			if memberId > highestId {
-				highestId = memberId
+			for members := range memberLists[pipeId] {
+				encountered[members] = true
 			}
 		}
-
-		if !unique[highestId] {
-			unique[highestId] = true
-		}
 	}
 
-	fmt.Printf("Part 2: The number of unique groups is %d\n", len(unique))
+	fmt.Printf("Part 2: The number of unique groups is %d\n", len(memberLists))
 }
