@@ -11,47 +11,35 @@ import (
 )
 
 var re = regexp.MustCompile("^(\\d*) <-> (.*)$")
-var pipes map[int]map[int]bool
+var pipes map[int][]int
 
 func parse(text string) {
 	groups := re.FindStringSubmatch(text)
 	id, _ := strconv.Atoi(groups[1])
 	numbers := aoc2017.StringsToInts(strings.Split(groups[2], ", "))
-
-	if pipes[id] == nil {
-		pipes[id] = map[int]bool{}
-	}
-
-	for _, num := range numbers {
-		if pipes[num] == nil {
-			pipes[num] = map[int]bool{}
-		}
-
-		pipes[id][num] = true
-		pipes[num][id] = true
-	}
+	pipes[id] = numbers
 }
 
-func findNeighbours(id int, targetId int, seen map[int]bool) {
+func findNeighbours(id int, seen map[int]bool) map[int]bool {
 	seen[id] = true
 
-	for neighbour := range pipes[id] {
+	for _, neighbour := range pipes[id] {
 		if !seen[neighbour] {
-			findNeighbours(neighbour, targetId, seen)
+			findNeighbours(neighbour, seen)
 		}
 	}
+
+	return seen
 }
 
 func getGroupMembers(id int) map[int]bool {
-	seen := map[int]bool{}
-	findNeighbours(id, id, seen)
-	return seen
+	return findNeighbours(id, map[int]bool{})
 }
 
 func main() {
 	dat, _ := os.Open("./day12_input.txt")
 	scanner := bufio.NewScanner(bufio.NewReader(dat))
-	pipes = map[int]map[int]bool{}
+	pipes = map[int][]int{}
 
 	for scanner.Scan() {
 		parse(scanner.Text())
