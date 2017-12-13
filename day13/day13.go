@@ -1,7 +1,7 @@
 package main
 
 // todo: cleanup
-// reduce the need for so many global states
+// use Chinese Remainer Theorem
 
 import (
 	"bufio"
@@ -10,30 +10,16 @@ import (
 	"strings"
 	"fmt"
 )
+
 var layers map[int]int
-var myDepth = -1
-var time = 0
-var totalSeverity = 0
-var totalDepth = 0
 
 func parse(str string) {
 	ints := aoc2017.StringsToInts(strings.Split(str, ": "))
 	layers[ints[0]] = ints[1]
-	totalDepth = ints[0]
 }
 
-func step() bool {
-	caught := false
-	myDepth += 1
-	layer := layers[myDepth]
-
-	if layer != 0 && time % (layer + layer - 2) == 0 {
-		totalSeverity += myDepth * layer
-		caught = true
-	}
-
-	time += 1
-	return caught
+func isCaught(time int, layer int) bool {
+	return layer != 0 && time % (layer + layer - 2) == 0
 }
 
 func main() {
@@ -45,8 +31,12 @@ func main() {
 		parse(scanner.Text())
 	}
 
-	for myDepth <= totalDepth {
-		step()
+	totalSeverity := 0
+
+	for i, layer := range layers {
+		if isCaught(i, layer) {
+			totalSeverity += i * layer
+		}
 	}
 
 	fmt.Printf("Part 1: severity is %d\n", totalSeverity)
@@ -55,14 +45,11 @@ func main() {
 	caught := true
 
 	for caught {
-		totalDelay += 1
-		myDepth = -1
-		totalSeverity = 0
-		time = totalDelay
 		caught = false
+		totalDelay += 1
 
-		for myDepth <= totalDepth {
-			if step() {
+		for i, layer := range layers {
+			if isCaught(totalDelay + i, layer) {
 				caught = true
 			}
 		}
