@@ -6,6 +6,7 @@ import (
 	"strings"
 	"fmt"
 	"aoc2017"
+	"math"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 	for scanner.Scan() {
 		numberStrings := strings.Split(scanner.Text(), "	")
 		numbers := aoc2017.StringsToInts(numberStrings)
-		lowest := 9999999 // fixme :/
+		lowest := math.MaxInt32
 		highest := 0
 
 		for _, num := range numbers {
