@@ -1,8 +1,5 @@
 package main
 
-// todo: cleanup
-// use Chinese Remainer Theorem
-
 import (
 	"bufio"
 	"os"
@@ -12,7 +9,7 @@ import (
 )
 
 func isCaught(time int, layer int) bool {
-	return layer != 0 && time % (layer + layer - 2) == 0
+	return time % (layer + layer - 2) == 0
 }
 
 func main() {
@@ -36,15 +33,15 @@ func main() {
 	fmt.Printf("Part 1: severity is %d\n", totalSeverity)
 
 	offset := 0
-	caught := true
+	goodRun := false
 
-	for caught {
-		caught = false
+	for !goodRun {
+		goodRun = true
 		offset += 1
 
 		for i, layer := range layers {
 			if isCaught(offset + i, layer) {
-				caught = true
+				goodRun = false
 				break
 			}
 		}
