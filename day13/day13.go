@@ -11,13 +11,6 @@ import (
 	"fmt"
 )
 
-var layers map[int]int
-
-func parse(str string) {
-	ints := aoc2017.StringsToInts(strings.Split(str, ": "))
-	layers[ints[0]] = ints[1]
-}
-
 func isCaught(time int, layer int) bool {
 	return layer != 0 && time % (layer + layer - 2) == 0
 }
@@ -25,10 +18,11 @@ func isCaught(time int, layer int) bool {
 func main() {
 	dat, _ := os.Open("./day13_input.txt")
 	scanner := bufio.NewScanner(bufio.NewReader(dat))
-	layers = map[int]int{}
+	layers := map[int]int{}
 
 	for scanner.Scan() {
-		parse(scanner.Text())
+		ints := aoc2017.StringsToInts(strings.Split(scanner.Text(), ": "))
+		layers[ints[0]] = ints[1]
 	}
 
 	totalSeverity := 0
@@ -41,19 +35,20 @@ func main() {
 
 	fmt.Printf("Part 1: severity is %d\n", totalSeverity)
 
-	totalDelay := 0
+	offset := 0
 	caught := true
 
 	for caught {
 		caught = false
-		totalDelay += 1
+		offset += 1
 
 		for i, layer := range layers {
-			if isCaught(totalDelay + i, layer) {
+			if isCaught(offset + i, layer) {
 				caught = true
+				break
 			}
 		}
 	}
 
-	fmt.Printf("Part 2: fewest picoseconds is %d\n", totalDelay)
+	fmt.Printf("Part 2: fewest picoseconds is %d\n", offset)
 }
