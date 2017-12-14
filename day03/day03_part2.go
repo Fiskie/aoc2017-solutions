@@ -1,30 +1,30 @@
 package main
 
 import (
-	"strconv"
 	"fmt"
 )
 
-func key(x int, y int) (string) {
-	return strconv.Itoa(x) + "," + strconv.Itoa(y)
+type vector struct {
+	x int
+	y int
 }
 
-func sumAdjacents(x int, y int, grid map[string]int) (int) {
-	return grid[key(x-1, y-1)] +
-		grid[key(x-1, y)] +
-		grid[key(x-1, y+1)] +
-		grid[key(x, y-1)] +
-		grid[key(x, y)] +
-		grid[key(x, y+1)] +
-		grid[key(x+1, y-1)] +
-		grid[key(x+1, y)] +
-		grid[key(x+1, y+1)]
+func sumAdjacents(x int, y int, grid map[vector]int) int {
+	return grid[vector{x-1, y-1}] +
+		grid[vector{x-1, y}] +
+		grid[vector{x-1, y+1}] +
+		grid[vector{x, y-1}] +
+		grid[vector{x, y}] +
+		grid[vector{x, y+1}] +
+		grid[vector{x+1, y-1}] +
+		grid[vector{x+1, y}] +
+		grid[vector{x+1, y+1}]
 }
 
 func main() {
 	// grid will be a one-dimensional map keyed by x,y as a string
-	grid := map[string]int{}
-	grid[key(0, 0)] = 1
+	grid := map[vector]int{}
+	grid[vector{0, 0}] = 1
 
 	input := 361527
 	lastAdjacentSum := 0
@@ -57,7 +57,7 @@ func main() {
 
 		lastAdjacentSum = sumAdjacents(x, y, grid)
 		fmt.Printf("%d, %d: %d\n", x, y, lastAdjacentSum)
-		grid[key(x, y)] = lastAdjacentSum
+		grid[vector{x, y}] = lastAdjacentSum
 	}
 
 	fmt.Printf("Part 2: First larger value is %d\n", lastAdjacentSum)

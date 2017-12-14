@@ -1,6 +1,6 @@
-# Advent of Code 2017 - Golang learner edition
+# Advent of Code 2017 - "self-contained" Golang learner edition
 
-I used AoC2017 as a vehicle to learn Golang.
+I used AoC2017 to learn Golang.
 
 The puzzle inputs are specific to me; if you want to run them
 against your supplied inputs, maybe you should change them. Or
