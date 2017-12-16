@@ -27,7 +27,7 @@ func getJumpCount(jumps []int, jumpFunc func(int) int) (int) {
 	size := len(jumps)
 	counter := 0
 
-	for true {
+	for {
 		if index < 0 || index >= size {
 			return counter
 		}
@@ -37,8 +37,6 @@ func getJumpCount(jumps []int, jumpFunc func(int) int) (int) {
 		index += jump
 		counter++
 	}
-
-	return counter
 }
 
 func main() {

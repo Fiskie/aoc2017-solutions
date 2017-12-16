@@ -59,7 +59,7 @@ func main() {
 
 	permutations := []string{string(programs)}
 
-	for true {
+	for {
 		for _, move := range dance {
 			programs = perform(programs, move)
 		}
