@@ -2,12 +2,16 @@ package main
 
 import "fmt"
 
-func generator(c chan int, factor int, value int, multiple int) {
-	for {
-		value = value * factor % 2147483647
-		if multiple == 0 || value % multiple == 0 {
-			c <- value
+func generator(factor int, value int, multiple int) func() int {
+	return func() int {
+		for {
+			value = value * factor % 2147483647
+			if multiple == 0 || value % multiple == 0 {
+				return value
+			}
 		}
+
+		return -1
 	}
 }
 
@@ -17,15 +21,13 @@ func main() {
 }
 
 func iterate(iterations int, aMult int, bMult int) int {
-	a := make(chan int, 50)
-	b := make(chan int, 50)
 	count := 0
 
-	go generator(a,16807, 873, aMult)
-	go generator(b,48271, 583, bMult)
+	a := generator(16807, 873, aMult)
+	b := generator(48271, 583, bMult)
 
 	for i := 0; i < iterations; i++ {
-		if <-a & 0xFFFF == <-b & 0xFFFF {
+		if a() & 0xFFFF == b() & 0xFFFF {
 			count += 1
 		}
 	}
