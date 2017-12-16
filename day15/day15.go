@@ -10,8 +10,6 @@ func generator(factor int, value int, multiple int) func() int {
 				return value
 			}
 		}
-
-		return -1
 	}
 }
 
