@@ -33,7 +33,6 @@ func main() {
 	fmt.Printf("Part 1: value is %d\n", array[indexOf(array, 2017) + 1])
 
 	pos = 0
-	array = []int{0}
 	desired := 0
 
 	for i := 1; i < 50000001; i++ {
