@@ -75,6 +75,6 @@ func main() {
 		permutations = append(permutations, string(programs))
 	}
 
-	answer := permutations[(1000000000 % len(permutations)) - 1]
+	answer := permutations[(1000000000%len(permutations))-1]
 	fmt.Printf("Part 2: Final order is %s\n", answer)
 }

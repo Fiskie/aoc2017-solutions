@@ -47,7 +47,7 @@ func Twist(list []int, lengths []byte, pos int, skipSize int) ([]int, int, int) 
 	size := len(list)
 
 	for _, length := range lengths {
-		list = subReverse(list, pos % size, int(length))
+		list = subReverse(list, pos%size, int(length))
 		pos += int(length) + skipSize
 		skipSize += 1
 	}
@@ -61,7 +61,7 @@ func makeDense(list []int) []byte {
 	out := make([]byte, chunks)
 
 	for i := 0; i < chunks; i++ {
-		out[i] = xor(list[i * size:i * size + size], size)
+		out[i] = xor(list[i*size:i*size+size], size)
 	}
 
 	return out

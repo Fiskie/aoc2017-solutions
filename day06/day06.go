@@ -23,7 +23,7 @@ func redistribute(bank []int) {
 
 	for redistributableBlocks > 0 {
 		targetIndex += 1
-		bank[targetIndex % size] += 1
+		bank[targetIndex%size] += 1
 		redistributableBlocks -= 1
 	}
 }

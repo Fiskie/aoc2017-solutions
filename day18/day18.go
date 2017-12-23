@@ -100,7 +100,7 @@ func main() {
 
 	for scanner.Scan() {
 		args := strings.Split(scanner.Text(), " ")
-		inst := instruction{op:  args[0], dst: args[1]}
+		inst := instruction{op: args[0], dst: args[1]}
 
 		if len(args) == 3 {
 			inst.src = args[2]

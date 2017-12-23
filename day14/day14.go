@@ -50,7 +50,7 @@ func getGroup(grid map[vector]bool, coords vector, seen map[vector]bool) map[vec
 
 func main() {
 	input := "hxtvlmkl"
-	grid := make(map[vector]bool, 128 * 128)
+	grid := make(map[vector]bool, 128*128)
 
 	for i := 0; i < 128; i++ {
 		lengths := []byte(input + "-" + strconv.FormatInt(int64(i), 10))
@@ -62,7 +62,7 @@ func main() {
 		for word := 0; word < 8; word++ {
 			for offset, bit := range hexToBin(hexString[word*4:word*4+4]) {
 				num, _ := strconv.Atoi(string(bit))
-				grid[vector{i, (word*16)+offset}] = num == 1
+				grid[vector{i, (word * 16) + offset}] = num == 1
 			}
 		}
 	}

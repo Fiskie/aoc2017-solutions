@@ -26,7 +26,7 @@ func eval(str string) {
 
 	integer1, _ := registers[matches[4]]
 	integer2, _ := strconv.Atoi(matches[6])
-	
+
 	if comparators[matches[5]](integer1, integer2) {
 		registerArg, _ := strconv.Atoi(matches[3])
 

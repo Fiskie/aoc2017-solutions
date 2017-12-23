@@ -9,7 +9,7 @@ import (
 )
 
 func isCaught(time int, layer int) bool {
-	return time % (layer + layer - 2) == 0
+	return time%(layer+layer-2) == 0
 }
 
 func main() {
@@ -40,7 +40,7 @@ func main() {
 		offset += 1
 
 		for i, layer := range layers {
-			if isCaught(offset + i, layer) {
+			if isCaught(offset+i, layer) {
 				goodRun = false
 				break
 			}

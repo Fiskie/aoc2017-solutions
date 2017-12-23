@@ -10,15 +10,15 @@ type vector struct {
 }
 
 func sumAdjacents(x int, y int, grid map[vector]int) int {
-	return grid[vector{x-1, y-1}] +
-		grid[vector{x-1, y}] +
-		grid[vector{x-1, y+1}] +
-		grid[vector{x, y-1}] +
+	return grid[vector{x - 1, y - 1}] +
+		grid[vector{x - 1, y}] +
+		grid[vector{x - 1, y + 1}] +
+		grid[vector{x, y - 1}] +
 		grid[vector{x, y}] +
-		grid[vector{x, y+1}] +
-		grid[vector{x+1, y-1}] +
-		grid[vector{x+1, y}] +
-		grid[vector{x+1, y+1}]
+		grid[vector{x, y + 1}] +
+		grid[vector{x + 1, y - 1}] +
+		grid[vector{x + 1, y}] +
+		grid[vector{x + 1, y + 1}]
 }
 
 func main() {

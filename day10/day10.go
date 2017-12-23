@@ -32,7 +32,7 @@ func part1() {
 		"Part 1: The answer is %d x %d = %d\n",
 		result[0],
 		result[1],
-		int(result[0]) * int(result[1]))
+		int(result[0])*int(result[1]))
 }
 
 func part2() {

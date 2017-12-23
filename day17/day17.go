@@ -30,7 +30,7 @@ func main() {
 		fmt.Printf("%d: %d\n", i, num)
 	}
 
-	fmt.Printf("Part 1: value is %d\n", array[indexOf(array, 2017) + 1])
+	fmt.Printf("Part 1: value is %d\n", array[indexOf(array, 2017)+1])
 
 	pos = 0
 	desired := 0

@@ -13,7 +13,7 @@ type vector struct {
 }
 
 type distResult struct {
-	shortestPath int
+	shortestPath     int
 	furthestDistance int
 }
 

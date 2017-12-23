@@ -55,7 +55,7 @@ func walk() {
 		if vel.y != 0 {
 			// Travelling vertically, look horizontally
 			vel.y = 0
-			if grid[coordinates{pos.x+1,pos.y}] == ' ' {
+			if grid[coordinates{pos.x + 1, pos.y}] == ' ' {
 				vel.x = -1
 			} else {
 				vel.x = 1
@@ -63,7 +63,7 @@ func walk() {
 		} else {
 			// Travelling horizontally, look vertically
 			vel.x = 0
-			if grid[coordinates{pos.x,pos.y+1}] == ' ' {
+			if grid[coordinates{pos.x, pos.y + 1}] == ' ' {
 				vel.y = -1
 			} else {
 				vel.y = 1
